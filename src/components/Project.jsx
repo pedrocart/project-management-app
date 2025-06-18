@@ -1,45 +1,31 @@
-export default function Project({ project }) {
+import Tasks from "./Tasks.jsx";
+
+export default function Project({ project, onDeleteProject, handleDeleteTask, handleAddTask }) {
+
    return (
       <div className="mt-8 max-w-md mx-auto bg-white p-6 rounded-lg shadow-md gap-3 text-left">
-         <button type="button" className="float-right">Delete</button>
-         <h2>Learning React</h2>
-         <h6>June 18, 2025</h6>
+         <button
+            type="button" 
+            className="float-right"
+            onClick={() => onDeleteProject(project.title)}
+         >
+            Delete
+         </button>
+         <h2>{project.title}</h2>
+         <h6>{project.dueDate}</h6>
 
          <p>
-            Learn React from the group up
-         </p>
-         <p>
-            Start with the basics, finish with advanced knowledge.
+            {project.description || "No description provided for this project."}
          </p>
 
          <hr />
 
-         <div className="mt-8 max-w-md mx-auto flex flex-col gap-3 text-left">
-            <h2>Tasks</h2>
+         <Tasks
+            tasks={project.tasks}
+            handleAddTask={taskName => handleAddTask(project.title, { id: Date.now(), name: taskName, completed: false })}
+            handleDeleteTask={taskId => handleDeleteTask(project.title, taskId)}
+         />
 
-            <label htmlFor="add-task">
-               <input type="text" name="task-name" id="task-name" />
-               <span className="float-end p-2 cursor-pointer">Add Task</span>
-            </label>
-
-            <ul>
-               <li>
-                  <p>
-                     Learn the Basics <span className="float-end bg-slate-500 rounded text-white px-2 cursor-pointer">Clear</span>
-                  </p>
-               </li>
-               <li>
-                  <p>
-                     Learn the Advanced <span className="float-end bg-slate-500 rounded text-white px-2 cursor-pointer">Clear</span>
-                  </p>
-               </li>
-               <li>
-                  <p>
-                     Learn the Basics <span className="float-end bg-slate-500 rounded text-white px-2 cursor-pointer">Clear</span>
-                  </p>
-               </li>
-            </ul>
-         </div>
       </div>
    );
 }

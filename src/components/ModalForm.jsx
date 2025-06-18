@@ -24,7 +24,8 @@ const ModalForm = forwardRef(function ModalForm({ onSave }, ref) {
       const project = {
          title: formData.get('title'),
          description: formData.get('description'),
-         dueDate: formData.get('due-date')
+         dueDate: formData.get('due-date'),
+         tasks: []
       };
 
       return project;
