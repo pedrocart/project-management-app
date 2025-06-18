@@ -1,9 +1,14 @@
+import Sidebar from './components/Sidebar.jsx';
+import MainContent from './components/MainContent.jsx';
+
 function App() {
-  return (
-    <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
-    </>
-  );
+
+   return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-100">
+         <Sidebar />
+         <MainContent />
+      </div>
+   );
 }
 
 export default App;
